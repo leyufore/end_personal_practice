@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- spring-quartz 的使用 -->
+    <!--
+        1.SchedulerFactoryBean 可定义需要执行的 trigger
+        2.定义 trigger 及对应的 jobDetail
+        3.jobDetail 可使用 MethodInvokingJobDetailFactoryBean（提供调用一个类中方法的功能）
+    -->
+    <bean id="schedulerFactory" lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="quartzJobPushRunTask"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="quartzJobPushRunTask" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="quartzJobPushTask"/>
+        <property name="cronExpression" value="${quartzJobCollTask}"/>
+    </bean>
+    <bean id="quartzJobPushTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="JpushJob"/>
+        <property name="targetMethod" value="JpushJobTimer"/>
+        <!-- 不并发执行 -->
+        <property name="concurrent" value="false"/>
+    </bean>
+    <bean id="JpushJob" class="cn.lefore.messagebus.dao.program.impl.ProgramMessageJpushDaoImpl">
+        <property name="jedisPool" ref="jedisPool"/>
+    </bean>
+</beans>

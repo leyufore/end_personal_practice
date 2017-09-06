@@ -1,0 +1,100 @@
+资料来源：http://blog.csdn.net/daiyutage/article/details/53739452
+
+需要 jar 包，可以通过 Java -jar xxx.jar 运行时，需要满足两个 条件：
+1、在 jar 包中的 META-INF/MANIFEST.MF 中指定 Main-Class， 就是程序的入口
+2、能加载到依赖包
+
+使用 Maven 生成能直接运行的 jar 包，有如下三种方式：
+1.使用 maven-jar-plugin 和 maven-dependency-plugin 插件打包
+2.使用 maven-assembly-plugin 插件打包
+3.使用 maven-shade-plugin 插件打包
+
+三种方式对比：
+方式2、3，只生成一个 jar ，包含了项目自身代码、资源以及所有的依赖包，相较于方式1，更方便管理。
+
+方式1.使用 maven-jar-plugin 和 maven-dependency-plugin 插件打包
+
+pom.xml 配置：
+
+<build>
+    <plugins>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>2.6</version>
+            <configuration>
+                <archive>
+                    <!-- 会在生成的 jar 包中的 META-INF/MANIFEST.MF 记录入口类及依赖包的路径 -->
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                        <classpathPrefix>lib/</classpathPrefix>
+                        <mainClass>com.xxg.Main</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
+        <plugin>
+            <!-- 插件作用在于复制依赖包到相应的目录位置 -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.10</version>
+            <executions>
+                <execution>
+                    <id>copy-dependencies</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>copy-dependencies</goal>
+                    </goals>
+                    <configuration>
+                        <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+
+    </plugins>
+</build>
+
+方式2.使用 maven-assembly-plugin 插件打包
+pom.xml 配置：
+<build>
+    <plugins>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>2.5.5</version>
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>com.xxg.Main</mainClass>
+                    </manifest>
+                </archive>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <!-- phase, goals 表示在执行package打包时，执行assembly:single,
+                         所以可用 mvn package 打包，如果不指定 phase 时候，只指定 goal:single时候，
+                         则需要使用 mvn package assembly:single。
+                      -->
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+    </plugins>
+</build>
+
+打包后会在target目录下生成一个xxx-jar-with-dependencies.jar文件，这个文件不但包含了自己项目中的代码和资源，还包含了所有依赖包的内容。
+所以可以直接通过java -jar来运行。
+
+方式3.使用 maven-shade-plugin 插件打包
+该方式尚未使用过。

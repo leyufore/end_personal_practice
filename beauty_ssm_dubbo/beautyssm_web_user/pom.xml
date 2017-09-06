@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.lefore</groupId>
+        <artifactId>beauty_ssm_dubbo_parent</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../beautyssm_parent</relativePath>
+    </parent>
+
+    <groupId>com.lefore</groupId>
+    <artifactId>beauty_ssm_dubbo_web_user</artifactId>
+    <version>${beauty_ssm_web_user.version}</version>
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.lefore</groupId>
+            <artifactId>beauty_ssm_dubbo_api_user</artifactId>
+            <version>${beauty_ssm_api_user.version}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

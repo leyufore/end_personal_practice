@@ -1,0 +1,13 @@
+28-Aug-2017 00:31:53.461 信息 [Thread-7] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8082"]
+28-Aug-2017 00:31:53.484 信息 [Thread-7] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["ajp-nio-8011"]
+28-Aug-2017 00:31:53.485 信息 [Thread-7] org.apache.catalina.core.StandardService.stopInternal Stopping service [Catalina]
+28-Aug-2017 00:31:53.693 警告 [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [beauty_ssm_cluster] registered the JDBC driver [com.alibaba.druid.proxy.DruidDriver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+28-Aug-2017 00:31:53.693 警告 [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc The web application [beauty_ssm_cluster] registered the JDBC driver [com.mysql.jdbc.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+28-Aug-2017 00:31:53.694 警告 [Thread-7] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [beauty_ssm_cluster] appears to have started a thread named [Abandoned connection cleanup thread] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.lang.Object.wait(Native Method)
+ java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:143)
+ com.mysql.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:43)
+28-Aug-2017 00:31:53.888 信息 [Thread-7] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8082"]
+28-Aug-2017 00:31:54.009 信息 [Thread-7] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["ajp-nio-8011"]
+28-Aug-2017 00:31:54.013 信息 [Thread-7] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8082"]
+28-Aug-2017 00:31:54.014 信息 [Thread-7] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["ajp-nio-8011"]

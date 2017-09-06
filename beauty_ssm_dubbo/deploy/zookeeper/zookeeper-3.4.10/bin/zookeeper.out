@@ -1,0 +1,26 @@
+2017-08-31 10:24:03,861 [myid:] - INFO  [main:QuorumPeerConfig@134] - Reading configuration from: /Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../conf/zoo.cfg
+2017-08-31 10:24:03,887 [myid:] - INFO  [main:DatadirCleanupManager@78] - autopurge.snapRetainCount set to 3
+2017-08-31 10:24:03,887 [myid:] - INFO  [main:DatadirCleanupManager@79] - autopurge.purgeInterval set to 0
+2017-08-31 10:24:03,888 [myid:] - INFO  [main:DatadirCleanupManager@101] - Purge task is not scheduled.
+2017-08-31 10:24:03,888 [myid:] - WARN  [main:QuorumPeerMain@113] - Either no config or no quorum defined in config, running  in standalone mode
+2017-08-31 10:24:03,980 [myid:] - INFO  [main:QuorumPeerConfig@134] - Reading configuration from: /Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../conf/zoo.cfg
+2017-08-31 10:24:03,980 [myid:] - INFO  [main:ZooKeeperServerMain@96] - Starting server
+2017-08-31 10:24:05,015 [myid:] - INFO  [main:Environment@100] - Server environment:zookeeper.version=3.4.10-39d3a4f269333c922ed3db283be479f9deacaa0f, built on 03/23/2017 10:13 GMT
+2017-08-31 10:24:05,015 [myid:] - INFO  [main:Environment@100] - Server environment:host.name=192.168.0.105
+2017-08-31 10:24:05,015 [myid:] - INFO  [main:Environment@100] - Server environment:java.version=1.8.0_144
+2017-08-31 10:24:05,015 [myid:] - INFO  [main:Environment@100] - Server environment:java.vendor=Oracle Corporation
+2017-08-31 10:24:05,015 [myid:] - INFO  [main:Environment@100] - Server environment:java.home=/Library/Java/JavaVirtualMachines/jdk1.8.0_144.jdk/Contents/Home/jre
+2017-08-31 10:24:05,015 [myid:] - INFO  [main:Environment@100] - Server environment:java.class.path=/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../build/classes:/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../build/lib/*.jar:/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../lib/slf4j-log4j12-1.6.1.jar:/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../lib/slf4j-api-1.6.1.jar:/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../lib/netty-3.10.5.Final.jar:/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../lib/log4j-1.2.16.jar:/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../lib/jline-0.9.94.jar:/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../zookeeper-3.4.10.jar:/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../src/java/lib/*.jar:/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin/../conf:
+2017-08-31 10:24:05,015 [myid:] - INFO  [main:Environment@100] - Server environment:java.library.path=/Users/wenrule/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+2017-08-31 10:24:05,016 [myid:] - INFO  [main:Environment@100] - Server environment:java.io.tmpdir=/var/folders/94/10j85dxx5yzdclmq6wkq4yx80000gn/T/
+2017-08-31 10:24:05,016 [myid:] - INFO  [main:Environment@100] - Server environment:java.compiler=<NA>
+2017-08-31 10:24:05,017 [myid:] - INFO  [main:Environment@100] - Server environment:os.name=Mac OS X
+2017-08-31 10:24:05,018 [myid:] - INFO  [main:Environment@100] - Server environment:os.arch=x86_64
+2017-08-31 10:24:05,018 [myid:] - INFO  [main:Environment@100] - Server environment:os.version=10.12.5
+2017-08-31 10:24:05,018 [myid:] - INFO  [main:Environment@100] - Server environment:user.name=wenrule
+2017-08-31 10:24:05,018 [myid:] - INFO  [main:Environment@100] - Server environment:user.home=/Users/wenrule
+2017-08-31 10:24:05,018 [myid:] - INFO  [main:Environment@100] - Server environment:user.dir=/Users/wenrule/Documents/intelliJ_projects/personal/beauty_ssm_dubbo/deploy/zookeeper/zookeeper-3.4.10/bin
+2017-08-31 10:24:05,032 [myid:] - INFO  [main:ZooKeeperServer@829] - tickTime set to 2000
+2017-08-31 10:24:05,032 [myid:] - INFO  [main:ZooKeeperServer@838] - minSessionTimeout set to -1
+2017-08-31 10:24:05,032 [myid:] - INFO  [main:ZooKeeperServer@847] - maxSessionTimeout set to -1
+2017-08-31 10:24:05,078 [myid:] - INFO  [main:NIOServerCnxnFactory@89] - binding to port 0.0.0.0/0.0.0.0:2181

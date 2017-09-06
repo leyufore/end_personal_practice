@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- project 基本配置 -->
+    <groupId>com.lefore</groupId>
+    <artifactId>message_bus</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <!-- 打包配置创建 JAR/WAR 包 -->
+    <packaging>jar</packaging>
+
+    <!-- 定义属性  依赖包版本号管理 -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <org.springframework.version>4.3.9.RELEASE</org.springframework.version>
+        <org.springframework.amqp.version>1.7.3.RELEASE</org.springframework.amqp.version>
+        <redis.clients.version>2.9.0</redis.clients.version>
+    </properties>
+
+    <!-- 依赖包管理 -->
+    <dependencies>
+
+        <!-- spring4 框架必需核心包 begin -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <!-- to ensure that all spring dependencies (both direct and transitive) are at the same version -->
+        <!-- 使得所有依赖于 Spring 的库使用一个相同版本的 Spring-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-framework-bom</artifactId>
+            <version>${org.springframework.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+        <!--
+            使用 log4j 2.x 时需要添加上 jcl 的依赖,使用 log4j 1.x 的话需要配合 common-logging（jcl的一种实现）
+            spring 是必须要依赖 jcl。 spring4 已集成 common-logging,此处不需再写相应依赖
+         -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+        <!-- log4j 2。对应需要时使用 log4j2 配置文件
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jcl</artifactId>
+            <version>2.6.2</version>
+        </dependency>
+        -->
+        <!-- spring4 框架必需核心包 end -->
+
+        <!-- spring-amqp   RabbitMQ 提供给 Spring 的 client 实现 begin-->
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit</artifactId>
+            <version>${org.springframework.amqp.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <!-- end-->
+
+        <!-- jedis redis 客户端库 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${redis.clients.version}</version>
+        </dependency>
+
+        <!-- json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160810</version>
+        </dependency>
+
+        <!--  quartz 作业调度 -->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.1</version>
+        </dependency>
+
+        <!-- 其中带有基于 spring 实现的 quartz -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${org.springframework.version}</version>
+        </dependency>
+
+        <!-- 极光推送 -->
+        <dependency>
+            <groupId>cn.jpush.api</groupId>
+            <artifactId>jpush-client</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+
+    </build>
+
+    <!-- 环境变量配置 环境分别为：dev、prod -->
+    <profiles>
+
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <redis.properties.file>classpath*:redis.properties</redis.properties.file>
+                <rabbitmq.properties.file>classpath*:rabbitmq.properties</rabbitmq.properties.file>
+                <jpush.properties.file>classpath*:jpush.properties</jpush.properties.file>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                    </resource>
+                </resources>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <addClasspath>true</addClasspath>
+                                    <classpathPrefix>../lib/</classpathPrefix>
+                                    <mainClass>cn.lefore.messagebus.App</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>prod</id>
+            <properties>
+                <redis.properties.file>./config/redis.properties</redis.properties.file>
+                <rabbitmq.properties.file>./config/rabbitmq.properties</rabbitmq.properties.file>
+                <jpush.properties.file>./config/jpush.properties</jpush.properties.file>
+            </properties>
+            <build>
+                <resources>
+                    <resource>
+                        <!-- 打包编译时对这些文件进行过滤，即这些文件中的${key}会被替换掉为 pom.xml 中定义的值（标签：properties) -->
+                        <!-- 请注意 该目录下所有占位符 ${..} 都会被替换，所以，对于如果此处 pom 占位符 与 spring 的占位符名字有重复时，
+                             可以使用两个目录，一个为 pom 过滤，一个为不需要 pom 过滤-->
+                        <directory>src/main/resources</directory>
+                        <filtering>true</filtering>
+                        <!-- 打包时候不包含 xml，由于 assembly 已将 xml 放进 config 文件夹中 -->
+                        <excludes>
+                            <exclude>*.xml</exclude>
+                        </excludes>
+                    </resource>
+                    <!--<resource>-->
+                    <!--<directory>src/main/resources-filter</directory>-->
+                    <!--<filtering>false</filtering>-->
+                    <!--</resource>-->
+                </resources>
+                <plugins>
+                    <!-- jar 插件： 定制该工程代码生成的自身 jar 包 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <archive>
+                                <!-- 配置 META-INF/MANIFEST.MF 内容，配置入口类及依赖包路径 -->
+                                <manifest>
+                                    <addClasspath>true</addClasspath>
+                                    <!-- ./ 当前目录，../ 父级目录，/ 根目录 -->
+                                    <!-- 由于 assembly 插件把该工程 jar 与依赖 jar 统一放到 lib 文件夹下（同级），所以此处依赖的搜索路径为父级目录的lib下 -->
+                                    <classpathPrefix>../lib/</classpathPrefix>
+                                    <mainClass>cn.lefore.messagebus.App</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+
+                    <!-- The Assembly Plugin for Maven is primarily intended to allow users to aggregate the project
+                        output along with its dependencies, modules, site documentation, and other files
+                        into a single distributable archive -->
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <configuration>
+                            <descriptor>src/assembly/assembly.xml</descriptor>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <!-- phase, goals 表示在执行package打包时，执行assembly:single,
+                                    所以可用 mvn package 打包，如果不指定 phase 时候，只指定 goal:single时候，
+                                    则需要使用 mvn package assembly:single。
+                                    -->
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
+</project>

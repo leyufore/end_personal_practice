@@ -1,0 +1,9 @@
+2017-08-28 00:00:00,009 INFO[com.lefore.ssm.quartz.BizQuartz:57] - @Scheduled-------cacheClear()
+2017-08-28 00:05:00,005 INFO[com.lefore.ssm.quartz.BizQuartz:57] - @Scheduled-------cacheClear()
+2017-08-28 00:10:00,001 INFO[com.lefore.ssm.quartz.BizQuartz:57] - @Scheduled-------cacheClear()
+2017-08-28 00:15:00,000 INFO[com.lefore.ssm.quartz.BizQuartz:57] - @Scheduled-------cacheClear()
+2017-08-28 00:20:00,003 INFO[com.lefore.ssm.quartz.BizQuartz:57] - @Scheduled-------cacheClear()
+2017-08-28 00:25:00,004 INFO[com.lefore.ssm.quartz.BizQuartz:57] - @Scheduled-------cacheClear()
+2017-08-28 00:30:00,002 INFO[com.lefore.ssm.quartz.BizQuartz:57] - @Scheduled-------cacheClear()
+2017-08-28 00:31:53,564 INFO[org.springframework.web.context.support.XmlWebApplicationContext:984] - Closing WebApplicationContext for namespace 'spring-dispatcher-servlet': startup date [Sun Aug 27 12:48:22 CST 2017]; root of context hierarchy
+2017-08-28 00:31:53,685 INFO[com.alibaba.druid.pool.DruidDataSource:1447] - {dataSource-1} closed

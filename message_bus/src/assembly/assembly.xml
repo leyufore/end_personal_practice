@@ -1,0 +1,37 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+    <id>assembly</id>
+    <formats>
+        <format>tar.gz</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <!-- 将 src/main/resources 目录中的 xml、properties 文件打包进 config 文件夹中 -->
+        <fileSet>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>*.xml</include>
+                <include>*.properties</include>
+            </includes>
+            <outputDirectory>config</outputDirectory>
+            <fileMode>0644</fileMode>
+            <!-- 过滤掉符号文件 -->
+            <!-- 符号文件解释：
+                在构建应用程序, 库, 驱动程序或者操作系统是, 编译器和链接器会在创建.exe, .dll, .sys以及其他可执行文件(也被称为二进制文件或者映像)的同时,
+                还会创建一定数量的附加文件, 这些文件也被称为符号文件(Symbol File).
+                从Windows Xp和Windows Server 2003开始, 符号文件只使用PDB格式
+                -->
+            <filtered>true</filtered>
+        </fileSet>
+    </fileSets>
+
+    <dependencySets>
+        <dependencySet>
+            <!-- 依赖包含该工程代码打包生成的 jar -->
+            <useProjectArtifact>true</useProjectArtifact>
+            <!-- 依赖打包进 lib 文件夹 -->
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+</assembly>

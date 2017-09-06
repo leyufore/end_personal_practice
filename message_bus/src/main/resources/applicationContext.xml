@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       default-autowire="byName" default-lazy-init="true"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- applicationContext.xml 的 beans 标签解释 -->
+    <!--
+        xmlns:aop xmlns:tx xmlns:context 是命名空间，在 <beans></beans> 内才可以使用相应标签，如 <bean>
+        xsi:schemaLocation 是为上面配置的命名空间指定xsd规范文件，这样在配置时候会有相应的提示，如有什么属性、值等，同时服务开启时进行校验
+
+        e.g. http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        1.可在 maven 所下载的依赖库中，查找到相应定义
+        2.Maven: spring-beans-4.3.9.Relearse.jar -> META_INF -> spring.schemas.
+        3.在 spring.schemas 中可找到
+        http://www.springframework.org/schema/beans/spring-beans.xsd 对应的包中文件位置
+        为org/springframework/beans/factory/xml/spring-beans-4.3.xsd，该文件就是实际的规范文件
+
+        当 xsi:schemaLocation 中的 xsd 没有声明版本号，默认取已有库中的规范文件。如
+        声明 http://www.springframework.org/schema/beans/spring-beans，由于我的 maven 工程中，
+        依赖下载的是 4.3.9 版本，所以，会自动对应所下载的 4.3 包中的规范文件
+    -->
+
+
+    <!-- 可以作为后续自动注解xml中的占位符 -->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <!-- 编写时使用，便于提示
+                <value>file:redis.properties</value>
+                <value>file:rabbitmq.properties</value>
+                 -->
+
+                <!-- 打包时使用 -->
+                <value>${redis.properties.file}</value>
+                <value>${rabbitmq.properties.file}</value>
+                <value>${jpush.properties.file}</value>
+            </list>
+        </property>
+    </bean>
+
+</beans>
